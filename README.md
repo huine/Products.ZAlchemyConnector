@@ -58,7 +58,7 @@ from zope.sqlalchemy import mark_changed
 class Example(SimpleItem):
 [...]
     def RunTestExample(self):
-    session = self.wrapper.get_wrapper().session
+        session = self.wrapper.get_wrapper().session
         mark_changed(session)
         response = session.execute("Select * from example")
         print(response.fetchall())
