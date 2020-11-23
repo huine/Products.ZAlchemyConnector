@@ -14,7 +14,7 @@ The text query wrapper part, works similarly to ZSQLMethods, but using SQLAlchem
 
 ## Installation
 Using pip:
-```Python
+```sh
 pip install Products.ZAlchemyConnector
 ```
 ## How to use
