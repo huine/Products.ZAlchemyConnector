@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 from OFS.SimpleItem import SimpleItem
 from z3c.sqlalchemy import createSAWrapper
 from z3c.sqlalchemy import getSAWrapper

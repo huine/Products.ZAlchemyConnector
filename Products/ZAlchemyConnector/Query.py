@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 from sqlalchemy import types, bindparam
 from sqlalchemy.sql import text
 from OFS.SimpleItem import SimpleItem
