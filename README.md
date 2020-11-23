@@ -128,7 +128,7 @@ The results are stored in the object ``Results``, which is a subclass of ``UserL
  - ``multiple`` - If set to ``True``, it's going to be transformed in a ``Tuple`` with elements of the ``type`` informed. Defaults to ``False``.
 
 ## Author
-Products.ZAlchemyConnector was written by Gabriel Diniz Gisoldo for SoftRH, São Paulo, Brazil.
+Products.ZAlchemyConnector was written by Gabriel Diniz Gisoldo for SoftRH, S&atilde;o Paulo, Brazil.
 
 ## License
 Products.ZAlchemyConnector is licensed under the MIT license. See LICENSE
