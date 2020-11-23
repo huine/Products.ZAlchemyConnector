@@ -1,5 +1,7 @@
 # Products.ZAlchemyConnector
 
+[![PyPI version](https://badge.fury.io/py/Products.ZAlchemyConnector.svg)](https://badge.fury.io/py/Products.ZAlchemyConnector)
+
 ZAlchemyConnector is a generic database adapter connector and text query wrapper for [Zope] using [SQLAlchemy].
 The DA part of this product is basically a wrapper around [z3c.sqlalchemy], which provides easy to use integration with Zope transactions.
 The text query wrapper part, works similarly to ZSQLMethods, but using SQLAlchemy syntax on SQL text for binding and replacing variables.
