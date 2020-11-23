@@ -30,16 +30,21 @@ classifiers = [
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+long_description += "\n------\n"
+
+with open("CHANGES.md", "r") as fh:
+    long_description += fh.read()
+
 setuptools.setup(
-    name="Products.ZAlchemyConnector",  # Replace with your own username
-    version='1.0.0',
+    name="Products.ZAlchemyConnector",
+    version='1.0.1',
     author="Gabriel Diniz Gisoldo",
     author_email='gabrielgisoldi@gmail.com',
     description="Connector and Query object for zope & sqlalchemy",
     keywords='Zope Database adapter SQLAlchemy',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/huine/ZAlchemyConnector",
+    url="https://github.com/huine/Products.ZAlchemyConnector",
     packages=setuptools.find_packages(),
     classifiers=classifiers,
     install_requires=requires,

@@ -41,14 +41,11 @@ class Wrapper(SimpleItem):
     transactional = True
     _isAnSQLConnection = True
 
-    def __init__(self, id, dsn, engine_options=None, encoding='iso-8859-1',
-                 convert_unicode=0):
+    def __init__(self, id, dsn, engine_options=None):
         """."""
         self.id = id
         self.dsn = dsn
         self.engine_options = engine_options and engine_options or ()
-        self.encoding = encoding
-        self.convert_unicode = convert_unicode
 
         self._new_utilid()
         wrapper = self.sa_zope_wrapper()
@@ -63,8 +60,6 @@ class Wrapper(SimpleItem):
     def engine_options_dict(self):
         """."""
         engine_options = dict(self.engine_options)
-        engine_options.update(convert_unicode=self.convert_unicode,
-                              encoding=self.encoding)
         return engine_options
 
     def edit(self, dsn, engine_options=None):
