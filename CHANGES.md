@@ -1,5 +1,9 @@
 # Changelog
 
+1.0.3 (2020-11-23)
+---
+- grammar correction in the README.md
+
 1.0.2 (2020-11-23)
 ---
 - Added license on source files

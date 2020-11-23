@@ -38,7 +38,7 @@ with open("CHANGES.md", "r") as fh:
 
 setuptools.setup(
     name="Products.ZAlchemyConnector",
-    version='1.0.2',
+    version='1.0.3',
     author="Gabriel Diniz Gisoldo",
     author_email='gabrielgisoldi@gmail.com',
     description="Connector and Query object for zope & sqlalchemy",

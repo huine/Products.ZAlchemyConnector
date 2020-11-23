@@ -5,7 +5,7 @@ The DA part of this product is basically a wrapper around [z3c.sqlalchemy], whic
 The text query wrapper part, works similarly to ZSQLMethods, but using SQLAlchemy syntax on SQL text for binding and replacing variables.
 
 #### Why use this product?
- - If you already already use SQL files and do not want to change everything to ORM.
+ - If you already use SQL files and do not want to change everything to ORM.
      - This product offers the object Query, which executes text SQL querys over SQLAlchemy.
 - If  you do not want to create and DA and save it on ZODB.
     - This product offers the object Wrapper, which allow you to create a database adapter inside another Zope product.
