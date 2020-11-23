@@ -12,6 +12,11 @@ The text query wrapper part, works similarly to ZSQLMethods, but using SQLAlchem
 - If  you do not want to create and DA and save it on ZODB.
     - This product offers the object Wrapper, which allow you to create a database adapter inside another Zope product.
 
+## Installation
+Using pip:
+```Python
+pip install Products.ZAlchemyConnector
+```
 ## How to use
 There's two ways to use this product, first is using the database adapter and second is using the Query object.
 
