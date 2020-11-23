@@ -1,5 +1,9 @@
 # Changelog
 
+1.0.2 (2020-11-23)
+---
+- Added license on source files
+
 1.0.1 (2020-11-23)
 ---
 - Added CHANGES.md
