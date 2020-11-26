@@ -128,7 +128,7 @@ If this fails, the object will throw an ``QueryTypeError`` exception.
 Another way it can fail is if you feed an parameter you haven't configured on the ``arguments`` parameter. In this case it will throw an ``QueryParamaterError`` exception.
 
 Otherwise, after the line ``print(_select(id_example=5))``, it'll print the results of the query.
-The results are stored in the object ``Results``, which is a subclass of ``UserList`` and each line returned from the query is a ``NamedTuple``, which allows the access to theirs values using the name of the columns as an attribute. E.g. ``_select[0].id_example``.
+The results are stored in the object ``Results``, which is a subclass of ``UserList`` and each line returned from the query is a ``Row``, which allows the access to theirs values using the name of the columns as an attribute. E.g. ``_select[0].id_example``.
 
 #### Query parameters
 
