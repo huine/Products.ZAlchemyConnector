@@ -3,12 +3,7 @@ from sqlalchemy import types, bindparam
 from sqlalchemy.sql import text
 from OFS.SimpleItem import SimpleItem
 from zope.sqlalchemy import mark_changed
-from collections import namedtuple, UserList
-
-
-def make_ntuple(fields):
-    """."""
-    return namedtuple('Row', fields)
+from collections import UserList
 
 
 class Query(SimpleItem):
@@ -37,7 +32,7 @@ class Query(SimpleItem):
         response = session.execute(self._template, params)
 
         if response.returns_rows:
-            nt = make_ntuple(fields=response.keys())
+            fields = response.keys()
 
             if self._max_rows:
                 rows = response.fetchmany(self._max_rows)
@@ -46,7 +41,7 @@ class Query(SimpleItem):
 
             response.close()
 
-            return Results([nt._make(i) for i in rows])
+            return Results([Row(zip(fields, i)) for i in rows])
         else:
             return Results()
 
@@ -168,4 +163,13 @@ class Results(UserList):
 
     def dictionaries(self):
         """."""
-        return tuple([i._asdict() for i in self.data])
+        from copy import copy
+        return tuple([copy(i.__dict__) for i in self.data])
+
+
+class Row(SimpleItem):
+    """."""
+
+    def __init__(self, row):
+        """."""
+        self.__dict__.update(row)
