@@ -1,5 +1,10 @@
 # Changelog
 
+1.0.4 (2020-11-26)
+---
+- Update README.md
+- Row now subclassing from simpleitem
+
 1.0.3 (2020-11-23)
 ---
 - grammar correction in the README.md
