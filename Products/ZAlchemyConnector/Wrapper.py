@@ -6,32 +6,26 @@ from z3c.sqlalchemy.interfaces import ISQLAlchemyWrapper
 from uuid import uuid4
 
 
-_wrapper_registry = {}
+z3c_registry = {}
 
 
-def register_sa_wrapper(name, wrapper):
+def register_z3c(name, wrapper):
+    """Insert """
+    z3c_registry[name] = wrapper
+
+
+def lookup_entry(name):
     """."""
-    _wrapper_registry[name] = wrapper
-
-
-def deregister_sa_wrapper(name):
-    """."""
-    _wrapper_registry.pop(name, None)
-
-
-def lookup_sa_wrapper(name):
-    """."""
-    da = _wrapper_registry.get(name)
+    da = z3c_registry.get(name)
     if not da:
-        raise LookupError(
-            "No SAWrapper instance registered under name " + name)
+        raise LookupError("No instance registered under name " + name)
     return da
 
 
 def clear_sa_wrapper_registry():
-    """Completely empty out the registry of `SAWrapper` instances."""
-    global _wrapper_registry
-    _wrapper_registry = {}
+    """."""
+    global z3c_registry
+    z3c_registry = {}
 
 
 class Wrapper(SimpleItem):
@@ -49,9 +43,9 @@ class Wrapper(SimpleItem):
         self.engine_options = engine_options and engine_options or ()
 
         self._new_utilid()
-        wrapper = self.sa_zope_wrapper()
+        wrapper = self.get_wrapper()
         if wrapper:
-            register_sa_wrapper(self.id, wrapper)
+            register_z3c(self.id, wrapper)
 
     def __call__(self, *args, **kv):
         """."""
@@ -98,18 +92,18 @@ class Wrapper(SimpleItem):
         """Assign a new unique utility ID."""
         self.util_id = str(uuid4())
 
-    def sa_zope_wrapper(self):
+    def get_wrapper(self):
         """."""
-        wrapper = self._supply_z3c_sa_wrapper()
+        wrapper = self._create_sa_wrapper()
         if wrapper is not None:
             return wrapper
         else:
             try:
-                return lookup_sa_wrapper(self.id)
+                return lookup_entry(self.id)
             except LookupError:
                 return None
 
-    def _supply_z3c_sa_wrapper(self):
+    def _create_sa_wrapper(self):
         """."""
         try:
             wrapper = getSAWrapper(self.util_id)
@@ -126,17 +120,13 @@ class Wrapper(SimpleItem):
                     engine_options=self.engine_options_dict,
                     name=self.util_id)
 
-                register_sa_wrapper(self.id, wrapper)
+                register_z3c(self.id, wrapper)
             except ValueError:
                 try:
                     wrapper = getSAWrapper(self.util_id)
                 except LookupError:
-                    wrapper = lookup_sa_wrapper(self.id)
+                    wrapper = lookup_entry(self.id)
                 except Exception:
                     wrapper = None
 
         return wrapper
-
-    def get_wrapper(self):
-        """."""
-        return self.sa_zope_wrapper()
