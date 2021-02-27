@@ -50,6 +50,20 @@ class SQLTemplate(SimpleItem.SimpleItem, Folder):
         if args:
             self.set_args(args)
 
+    def __call__(self):
+        """Execute Query."""
+        if not self._get_wrapper:
+            raise Exception('Wrapper not configured.')
+
+        _query = Query(
+            id=self.id,
+            get_wrapper=self._get_wrapper,
+            template=self.render_template(),
+            arguments=self.get_args_as_to_query()
+        )
+
+        return _query(**self.get_args_as_to_exec())
+
     def is_debug(self):
         """Check if debug flag is on."""
         if self.debug:
@@ -207,17 +221,3 @@ class SQLTemplate(SimpleItem.SimpleItem, Folder):
             print(sql_rendered)
 
         return sql_rendered
-
-    def query(self):
-        """Execute Query."""
-        if not self._get_wrapper:
-            raise Exception('Wrapper not configured.')
-
-        _query = Query(
-            id=self.id,
-            get_wrapper=self._get_wrapper,
-            template=self.render_template(),
-            arguments=self.get_args_as_to_query()
-        )
-
-        return _query(**self.get_args_as_to_exec()).dictionaries()
