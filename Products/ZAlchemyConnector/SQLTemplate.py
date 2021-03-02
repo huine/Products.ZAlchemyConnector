@@ -131,6 +131,18 @@ class SQLTemplate(SimpleItem.SimpleItem, Folder):
         """Return args' value from list of args."""
         return self.args.get(arg)['value']
 
+    def get_optional(self, arg):
+        """Try to get value of optional argument.
+
+        If arg exists and has value, returns arg formatted for biding.
+        If arg not exists or has no value, returns NULL.
+        """
+        arg_val = self.args.get(arg, {}).get('value', None)
+        if arg_val:
+            return """:{}""".format(arg)
+
+        return """NULL"""
+
     def check(self, arg):
         """Check arg.
 
