@@ -116,6 +116,8 @@ class SQLTemplate(SimpleItem.SimpleItem, Folder):
                 v.get("ignore_alchemy", False) is False
             ]
 
+        return None
+
     def get_args_as_to_exec(self):
         """Return args formatted in dictionary to Query for execution."""
         if self.args:
@@ -123,7 +125,7 @@ class SQLTemplate(SimpleItem.SimpleItem, Folder):
                     if v["value"] is not None and
                     v["type"] not in ('list',) and
                     v.get("ignore_alchemy", False) is False}
-        return None
+        return {}
 
     def get(self, arg):
         """Return args' value from list of args."""
